@@ -27,7 +27,7 @@ export function CopyButton({ text, label = "Copy" }: CopyButtonProps) {
       onClick={handleCopy}
       whileHover={{ scale: 1.04 }}
       whileTap={{ scale: 0.96 }}
-      className="rounded-full bg-white px-4 py-1.5 text-sm font-medium text-zinc-800 shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-shadow hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)]"
+      className="rounded-full bg-white/90 px-4 py-1.5 text-sm font-medium text-zinc-800 backdrop-blur-sm transition-colors hover:bg-white"
     >
       {copied ? "Copied!" : label}
     </motion.button>

@@ -10,14 +10,15 @@ export default function AdminPage() {
   const [status, setStatus] = useState<string>("");
   const [uploading, setUploading] = useState(false);
 
-  const load = useCallback(async () => {
-    const res = await fetch("/api/site");
-    if (res.ok) setConfig(await res.json());
-  }, []);
-
   useEffect(() => {
-    void load();
-  }, [load]);
+    let active = true;
+    fetch("/api/site").then(async (res) => {
+      if (res.ok && active) setConfig(await res.json());
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const save = async () => {
     if (!config) return;
@@ -39,7 +40,10 @@ export default function AdminPage() {
     setStatus("Reveal reset — click Save to apply on the home page.");
   };
 
-  const onUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const uploadImage = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    target: "hero" | "badge",
+  ) => {
     const file = e.target.files?.[0];
     if (!file || !config) return;
     setUploading(true);
@@ -50,10 +54,31 @@ export default function AdminPage() {
     setUploading(false);
     if (res.ok) {
       const { path } = (await res.json()) as { path: string };
-      setConfig({ ...config, hero: { ...config.hero, backgroundImage: path } });
+      if (target === "hero") {
+        setConfig({ ...config, hero: { ...config.hero, backgroundImage: path } });
+      } else {
+        setConfig({ ...config, about: { ...config.about, badgeImage: path } });
+      }
       setStatus("Image uploaded — click Save.");
     } else {
       setStatus("Upload failed.");
+    }
+  };
+
+  const updateExperienceJson = (
+    side: "experienceLeft" | "experienceRight",
+    raw: string,
+  ) => {
+    if (!config) return;
+    try {
+      const parsed = JSON.parse(raw) as SiteConfig["about"][typeof side];
+      setConfig({
+        ...config,
+        about: { ...config.about, [side]: parsed },
+      });
+      setStatus("");
+    } catch {
+      setStatus(`Invalid JSON for ${side}.`);
     }
   };
 
@@ -138,9 +163,76 @@ export default function AdminPage() {
               type="file"
               accept="image/*"
               disabled={uploading}
-              onChange={(e) => void onUpload(e)}
+              onChange={(e) => void uploadImage(e, "hero")}
               className="block text-sm"
             />
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-lg font-medium text-zinc-800">About section</h2>
+            <label className="block text-sm text-zinc-600">
+              Greeting
+              <input
+                className="mt-1 w-full rounded-lg border border-zinc-200 px-3 py-2"
+                value={config.about.greeting}
+                onChange={(e) =>
+                  setConfig({
+                    ...config,
+                    about: { ...config.about, greeting: e.target.value },
+                  })
+                }
+              />
+            </label>
+            <label className="block text-sm text-zinc-600">
+              Highlight name
+              <input
+                className="mt-1 w-full rounded-lg border border-zinc-200 px-3 py-2"
+                value={config.about.highlightName}
+                onChange={(e) =>
+                  setConfig({
+                    ...config,
+                    about: { ...config.about, highlightName: e.target.value },
+                  })
+                }
+              />
+            </label>
+            <label className="block text-sm text-zinc-600">
+              Bio
+              <textarea
+                className="mt-1 min-h-28 w-full rounded-lg border border-zinc-200 px-3 py-2"
+                value={config.about.bio}
+                onChange={(e) =>
+                  setConfig({
+                    ...config,
+                    about: { ...config.about, bio: e.target.value },
+                  })
+                }
+              />
+            </label>
+            <p className="text-sm text-zinc-500">Badge photo: {config.about.badgeImage}</p>
+            <input
+              type="file"
+              accept="image/*"
+              disabled={uploading}
+              onChange={(e) => void uploadImage(e, "badge")}
+              className="block text-sm"
+            />
+            <label className="block text-sm text-zinc-600">
+              Experience left (JSON array)
+              <textarea
+                className="mt-1 min-h-24 w-full font-mono text-xs rounded-lg border border-zinc-200 px-3 py-2"
+                defaultValue={JSON.stringify(config.about.experienceLeft, null, 2)}
+                onBlur={(e) => updateExperienceJson("experienceLeft", e.target.value)}
+              />
+            </label>
+            <label className="block text-sm text-zinc-600">
+              Experience right (JSON array)
+              <textarea
+                className="mt-1 min-h-24 w-full font-mono text-xs rounded-lg border border-zinc-200 px-3 py-2"
+                defaultValue={JSON.stringify(config.about.experienceRight, null, 2)}
+                onBlur={(e) => updateExperienceJson("experienceRight", e.target.value)}
+              />
+            </label>
           </section>
 
           <section className="space-y-4">

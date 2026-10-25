@@ -1,3 +1,9 @@
+export type TimelineEntry = {
+  role: string;
+  organization: string;
+  period: string;
+};
+
 export type SiteConfig = {
   hero: {
     greeting: string;
@@ -14,5 +20,13 @@ export type SiteConfig = {
     github: string;
     instagram: string;
     linkedin: string;
+  };
+  about: {
+    greeting: string;
+    highlightName: string;
+    bio: string;
+    badgeImage: string;
+    experienceLeft: TimelineEntry[];
+    experienceRight: TimelineEntry[];
   };
 };

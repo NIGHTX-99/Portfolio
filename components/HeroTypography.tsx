@@ -41,7 +41,7 @@ export function HeroTypography({
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className="font-script mb-2 text-3xl text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl"
+        className="font-script mb-2 text-3xl text-zinc-500 sm:text-4xl md:text-5xl"
       >
         {greeting}
       </motion.p>
@@ -50,7 +50,7 @@ export function HeroTypography({
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className="font-display text-[clamp(3.5rem,14vw,9rem)] leading-[0.88] tracking-tight text-white uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
+        className="font-display text-[clamp(3.5rem,14vw,9rem)] leading-[0.88] tracking-tight text-zinc-900 uppercase [text-shadow:0_1px_2px_rgba(255,255,255,0.9),0_0_32px_rgba(255,255,255,0.95)]"
       >
         {nameLine1}
       </motion.h1>
@@ -59,7 +59,7 @@ export function HeroTypography({
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className="font-display text-[clamp(3.5rem,14vw,9rem)] leading-[0.88] tracking-tight text-white uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
+        className="font-display text-[clamp(3.5rem,14vw,9rem)] leading-[0.88] tracking-tight text-zinc-900 uppercase [text-shadow:0_1px_2px_rgba(255,255,255,0.9),0_0_32px_rgba(255,255,255,0.95)]"
       >
         {nameLine2}
       </motion.h1>

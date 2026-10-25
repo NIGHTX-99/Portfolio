@@ -3,7 +3,7 @@
     "greeting": "Hello, I'm",
     "nameLine1": "AASHUTOSH",
     "nameLine2": "CHAUDHARY",
-    "backgroundImage": "/hero/default.png",
+    "backgroundImage": "/hero/reveal.png",
     "revealSeed": 1
   },
   "contact": {
@@ -14,5 +14,35 @@
     "github": "https://github.com/",
     "instagram": "https://instagram.com/",
     "linkedin": "https://linkedin.com/in/"
+  },
+  "about": {
+    "greeting": "Hi, I'm",
+    "highlightName": "Aashutosh",
+    "bio": "I'm a developer and designer who loves building digital products that feel effortless. I focus on clean interfaces, thoughtful motion, and experiences that solve real problems — from first sketch to shipped code.",
+    "badgeImage": "/hero/default.png",
+    "experienceLeft": [
+      {
+        "role": "Frontend Developer",
+        "organization": "Freelance / Personal Projects",
+        "period": "2024 — Present"
+      },
+      {
+        "role": "UI Engineering Intern",
+        "organization": "Product Studio",
+        "period": "2023 — 2024"
+      }
+    ],
+    "experienceRight": [
+      {
+        "role": "Open Source Contributor",
+        "organization": "Community",
+        "period": "2023 — Present"
+      },
+      {
+        "role": "Tech Club Lead",
+        "organization": "University",
+        "period": "2022 — 2023"
+      }
+    ]
   }
 }
