@@ -67,6 +67,13 @@ export function RevealCanvas({ imageSrc, revealSeed }: RevealCanvasProps) {
     let lastY: number | null = null;
     const stamps: Stamp[] = [];
 
+    function paintCover() {
+      // Full screen solid mask sheet covering the entire canvas.
+      ctx!.globalCompositeOperation = "source-over";
+      ctx!.fillStyle = MASK;
+      ctx!.fillRect(0, 0, width, height);
+    }
+
     function resize() {
       const rect = container!.getBoundingClientRect();
       width = Math.max(1, Math.round(rect.width));
@@ -76,9 +83,7 @@ export function RevealCanvas({ imageSrc, revealSeed }: RevealCanvasProps) {
       canvas!.style.width = width + "px";
       canvas!.style.height = height + "px";
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx!.globalCompositeOperation = "source-over";
-      ctx!.fillStyle = MASK;
-      ctx!.fillRect(0, 0, width, height);
+      paintCover();
     }
 
     function addStamp(x: number, y: number) {
@@ -137,9 +142,7 @@ export function RevealCanvas({ imageSrc, revealSeed }: RevealCanvasProps) {
     function loop() {
       const now = performance.now();
 
-      ctx!.globalCompositeOperation = "source-over";
-      ctx!.fillStyle = MASK;
-      ctx!.fillRect(0, 0, width, height);
+      paintCover();
 
       ctx!.globalCompositeOperation = "destination-out";
       for (let i = stamps.length - 1; i >= 0; i--) {

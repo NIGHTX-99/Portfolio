@@ -41,27 +41,19 @@ export function SiteFrame({ config }: SiteFrameProps) {
           </Link>
         </header>
 
-        <main className="relative flex flex-1 items-center justify-center px-6 py-12 sm:px-10">
-          {/* The scratch reveal is confined to this centered card — it never
-              touches the screen edges. */}
-          <div className="relative w-full max-w-6xl">
-            <div className="relative overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-[0_40px_100px_rgba(0,0,0,0.35)]">
-              <div className="relative h-[72vh] min-h-[480px] w-full">
-                <RevealCanvas
-                  key={`${hero.backgroundImage}-${hero.revealSeed}`}
-                  imageSrc={hero.backgroundImage}
-                  revealSeed={hero.revealSeed}
-                />
-                <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center p-8">
-                  <HeroTypography
-                    greeting={hero.greeting}
-                    nameLine1={hero.nameLine1}
-                    nameLine2={hero.nameLine2}
-                    social={social}
-                  />
-                </div>
-              </div>
-            </div>
+        <main className="relative min-h-dvh flex-1">
+          <RevealCanvas
+            key={`${hero.backgroundImage}-${hero.revealSeed}`}
+            imageSrc={hero.backgroundImage}
+            revealSeed={hero.revealSeed}
+          />
+          <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
+            <HeroTypography
+              greeting={hero.greeting}
+              nameLine1={hero.nameLine1}
+              nameLine2={hero.nameLine2}
+              social={social}
+            />
           </div>
         </main>
       </section>
