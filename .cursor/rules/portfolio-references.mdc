@@ -1,0 +1,15 @@
+---
+description: Portfolio UI references — amicro, SVGL, MiMo reveal
+globs: "**/*.{tsx,ts,css}"
+alwaysApply: false
+---
+
+# Portfolio design references
+
+When adding UI polish, micro-interactions, or icons to this portfolio:
+
+- **Micro-interactions & motion**: Browse and install from [amicro.dev](https://amicro.dev/) via `npx @subhanhq/amicro@latest add <component>`. Uses `motion/react` and Tailwind.
+- **Brand / social icons**: Use [svgl.app](https://svgl.app/) — prefer `@ridemountainpig/svgl-react` components, or fetch SVG from `https://api.svgl.app/svg/{name}.svg`.
+- **Scratch / hidden image reveal**: Hero uses canvas `destination-out` scratching (see `components/RevealCanvas.tsx`). Inspiration: [MiMo Code](https://mimo.xiaomi.com/mimocode).
+
+Site content is edited via `/admin` and stored in `data/site.json`.

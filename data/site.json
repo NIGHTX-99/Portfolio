@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "greeting": "Hello, I'm",
+    "nameLine1": "AASHUTOSH",
+    "nameLine2": "CHAUDHARY",
+    "backgroundImage": "/hero/default.png",
+    "revealSeed": 1
+  },
+  "contact": {
+    "email": "hello@aashutosh.dev",
+    "cvUrl": "/cv.pdf"
+  },
+  "social": {
+    "github": "https://github.com/",
+    "instagram": "https://instagram.com/",
+    "linkedin": "https://linkedin.com/in/"
+  }
+}
