@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { AboutSection } from "@/components/AboutSection";
+import { BottomNav } from "@/components/BottomNav";
 import { CopyButton } from "@/components/CopyButton";
 import { HeroTypography } from "@/components/HeroTypography";
 import { RevealCanvas } from "@/components/RevealCanvas";
@@ -14,7 +15,7 @@ export function SiteFrame({ config }: SiteFrameProps) {
   const { hero, contact, social, about } = config;
 
   return (
-    <div className="bg-white">
+    <div className="relative bg-white">
       <section className="relative flex min-h-dvh flex-col">
         <header className="relative z-30 flex flex-wrap items-center justify-between gap-4 px-6 py-6 sm:px-10">
           <div className="flex flex-wrap items-center gap-3">
@@ -32,6 +33,9 @@ export function SiteFrame({ config }: SiteFrameProps) {
             >
               CV
             </Link>
+          </div>
+          <div className="absolute left-1/2 top-6 -translate-x-1/2">
+            <BottomNav />
           </div>
           <Link
             href="/admin"
