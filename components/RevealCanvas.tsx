@@ -212,7 +212,7 @@ export function RevealCanvas({ imageSrc, revealSeed }: RevealCanvasProps) {
   }, [imageSrc, revealSeed]);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 overflow-hidden">
+    <div ref={containerRef} className="absolute inset-0 overflow-hidden bg-white">
       <Image
         src={imageSrc}
         alt=""
@@ -222,12 +222,22 @@ export function RevealCanvas({ imageSrc, revealSeed }: RevealCanvasProps) {
           artReady ? "opacity-100" : "opacity-0"
         }`}
         sizes="100vw"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent, black 50%, black 50%, transparent), linear-gradient(to bottom, transparent, black 50%, black 50%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 50%, black 50%, transparent), linear-gradient(to bottom, transparent, black 50%, black 50%, transparent)",
+          maskComposite: "intersect",
+          WebkitMaskComposite: "intersect",
+        }}
       />
-      <canvas
-        ref={canvasRef}
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 cursor-crosshair"
-      />
+      <div className="absolute inset-6">
+        <canvas
+          ref={canvasRef}
+          aria-hidden="true"
+          className="pointer-events-none h-full w-full cursor-crosshair"
+        />
+      </div>
       {hintVisible && (
         <p className="pointer-events-none absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-sm tracking-wide text-zinc-500/80">
           Scratch to reveal
